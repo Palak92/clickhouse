@@ -1,0 +1,15 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "urlheap",
+    srcs = ["urlheap.go"],
+    importpath = "github.com/palak92/clickhouse/pkg/urlheap",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "urlheap_test",
+    srcs = ["urlheap_test.go"],
+    embed = [":urlheap"],
+    deps = ["@com_github_google_go_cmp//cmp:go_default_library"],
+)
