@@ -8,7 +8,7 @@
 
 1. Install [homebrew](https://brew.sh)
 
-2. Install golang
+2. Install golang. Go version must be at least 1.18
 ```
 brew install go
 ```
