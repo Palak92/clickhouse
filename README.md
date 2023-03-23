@@ -61,3 +61,15 @@ bazel build //...
  ```
  bazel run //cmd:cmd
  ```
+2. Give absolute path to file.
+
+### Logic 
+
+1. File is processed line by line as file is quite large. Another way could have been doing batch processing of file data.
+
+2. MinHeap can have maximum 10 items at one time.
+
+### Improvements
+
+1. More tests 
+2. Batch processing of file 
