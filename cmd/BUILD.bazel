@@ -5,7 +5,7 @@ go_library(
     srcs = ["main.go"],
     importpath = "github.com/palak92/clickhouse/cmd",
     visibility = ["//visibility:private"],
-    deps = ["//pkg/urlheap"],
+    deps = ["//pkg/processor"],
 )
 
 go_binary(
