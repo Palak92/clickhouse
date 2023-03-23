@@ -35,6 +35,6 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fmt.Printf("Urls associated with 10 largest value are: %q", *processor.TopUrls())
+	fmt.Printf("Urls associated with 10 largest value are: %q", processor.TopUrls())
 
 }

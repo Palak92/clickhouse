@@ -13,6 +13,7 @@ import (
 type Processor struct {
 	pq   *urlheap.PriorityQueue
 	urls map[int64][]string
+	size int
 }
 
 func New() *Processor {
@@ -23,6 +24,7 @@ func New() *Processor {
 	return &Processor{
 		pq:   &pq,
 		urls: m,
+		size: 10,
 	}
 }
 
@@ -36,13 +38,16 @@ func (p Processor) Add(text string) error {
 	urls, ok := p.urls[val]
 	if ok {
 		urls = append(urls, url)
+		p.urls[val] = urls
+		return nil
 	}
+
 	item := &urlheap.Item{
 		Priority: val,
 	}
 	heap.Push(p.pq, item)
 	p.urls[val] = []string{url}
-	if p.pq.Len() > 10 {
+	if p.pq.Len() > p.size {
 		i := heap.Pop(p.pq).(*urlheap.Item)
 		delete(p.urls, i.Priority)
 		log.Printf("popped the value %d from min heap\n", i.Priority)
@@ -50,10 +55,10 @@ func (p Processor) Add(text string) error {
 	return nil
 }
 
-func (p Processor) TopUrls() *[]string {
+func (p Processor) TopUrls() []string {
 	var urls []string
 	for _, v := range p.urls {
 		urls = append(urls, v...)
 	}
-	return &urls
+	return urls
 }
